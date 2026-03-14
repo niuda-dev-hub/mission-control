@@ -7,6 +7,7 @@
 
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { formatDistanceToNow } from 'date-fns';
+import { useTranslations } from 'next-intl';
 import type { TaskActivity } from '@/lib/types';
 
 interface ActivityLogProps {
@@ -14,6 +15,7 @@ interface ActivityLogProps {
 }
 
 export function ActivityLog({ taskId }: ActivityLogProps) {
+  const t = useTranslations('activityLog');
   const [activities, setActivities] = useState<TaskActivity[]>([]);
   const [loading, setLoading] = useState(true);
   const pollingRef = useRef<NodeJS.Timeout | null>(null);
@@ -92,7 +94,7 @@ export function ActivityLog({ taskId }: ActivityLogProps) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-8">
-        <div className="text-mc-text-secondary">Loading activities...</div>
+        <div className="text-mc-text-secondary">{t('loading')}</div>
       </div>
     );
   }
@@ -101,7 +103,7 @@ export function ActivityLog({ taskId }: ActivityLogProps) {
     return (
       <div className="flex flex-col items-center justify-center py-8 text-mc-text-secondary">
         <div className="text-4xl mb-2">📝</div>
-        <p>No activity yet</p>
+        <p>{t('empty')}</p>
       </div>
     );
   }

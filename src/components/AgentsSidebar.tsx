@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { Plus, ChevronRight, ChevronLeft, Zap, ZapOff, Loader2, Search } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useMissionControl } from '@/lib/store';
 import type { Agent, AgentStatus, OpenClawSession } from '@/lib/types';
 import { AgentModal } from './AgentModal';
@@ -16,6 +17,14 @@ interface AgentsSidebarProps {
 }
 
 export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = true }: AgentsSidebarProps) {
+  const t = useTranslations('common');
+  const translateDefaultName = (name: string) => {
+    if (name === 'Builder') return t('defaultAgentNames.builder');
+    if (name === 'Tester') return t('defaultAgentNames.tester');
+    if (name === 'Reviewer') return t('defaultAgentNames.reviewer');
+    if (name === 'Learner') return t('defaultAgentNames.learner');
+    return name;
+  };
   const { agents, selectedAgent, setSelectedAgent, agentOpenClawSessions, setAgentOpenClawSession } = useMissionControl();
   const [filter, setFilter] = useState<FilterTab>('all');
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -32,15 +41,15 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
     for (const agent of agents) {
       try {
         const res = await fetch(`/api/agents/${agent.id}/openclaw`);
-        if (res.ok) {
-          const data = await res.json();
-          if (data.linked && data.session) {
-            setAgentOpenClawSession(agent.id, data.session as OpenClawSession);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.linked && data.session) {
+              setAgentOpenClawSession(agent.id, data.session as OpenClawSession);
+            }
           }
+        } catch (error) {
+          console.error(`Failed to load OpenClaw session for ${agent.name}:`, error);
         }
-      } catch (error) {
-        console.error(`Failed to load OpenClaw session for ${agent.name}:`, error);
-      }
     }
   }, [agents, setAgentOpenClawSession]);
 
@@ -88,7 +97,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
         } else {
           const error = await res.json();
           console.error('Failed to connect to OpenClaw:', error);
-          alert(`Failed to connect: ${error.error || 'Unknown error'}`);
+          alert(`${t('connectFailed')}: ${error.error || t('unknownError')}`);
         }
       }
     } catch (error) {
@@ -121,21 +130,21 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
       <div className="p-3 border-b border-mc-border">
         <div className="flex items-center">
           {!mobileMode && (
-            <button
-              onClick={toggleMinimize}
-              className="p-1 rounded hover:bg-mc-bg-tertiary text-mc-text-secondary hover:text-mc-text transition-colors"
-              aria-label={effectiveMinimized ? 'Expand agents' : 'Minimize agents'}
-            >
-              {effectiveMinimized ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
-            </button>
-          )}
-          {!effectiveMinimized && (
-            <>
-              <span className="text-sm font-medium uppercase tracking-wider">Agents</span>
-              <span className="bg-mc-bg-tertiary text-mc-text-secondary text-xs px-2 py-0.5 rounded ml-2">{agents.length}</span>
-            </>
-          )}
-        </div>
+                <button
+                  onClick={toggleMinimize}
+                  className="p-1 rounded hover:bg-mc-bg-tertiary text-mc-text-secondary hover:text-mc-text transition-colors"
+                  aria-label={effectiveMinimized ? t('expandAgents') : t('minimizeAgents')}
+                >
+                  {effectiveMinimized ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+                </button>
+            )}
+            {!effectiveMinimized && (
+              <>
+                <span className="text-sm font-medium uppercase tracking-wider">{t('agents')}</span>
+                <span className="bg-mc-bg-tertiary text-mc-text-secondary text-xs px-2 py-0.5 rounded ml-2">{agents.length}</span>
+              </>
+            )}
+          </div>
 
         {!effectiveMinimized && (
           <>
@@ -143,7 +152,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
               <div className="mb-3 mt-3 px-3 py-2 bg-green-500/10 border border-green-500/20 rounded-lg">
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-green-400">●</span>
-                  <span className="text-mc-text">Active Sub-Agents:</span>
+                  <span className="text-mc-text">{t('activeSubAgents')}</span>
                   <span className="font-bold text-green-400">{activeSubAgents}</span>
                 </div>
               </div>
@@ -158,7 +167,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
                     filter === tab ? 'bg-mc-accent text-mc-bg font-medium' : 'text-mc-text-secondary hover:bg-mc-bg-tertiary'
                   }`}
                 >
-                  {tab}
+                  {tab === 'all' ? t('filterAll') : tab === 'working' ? t('filterWorking') : t('filterStandby')}
                 </button>
               ))}
             </div>
@@ -190,7 +199,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
                     }`}
                   />
                   <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-mc-bg text-mc-text text-xs rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap z-50 border border-mc-border">
-                    {agent.name}
+                    {translateDefaultName(agent.name)}
                   </div>
                 </button>
               </div>
@@ -214,13 +223,13 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="font-medium text-sm truncate">{agent.name}</span>
+                    <span className="font-medium text-sm truncate">{translateDefaultName(agent.name)}</span>
                     {!!agent.is_master && <span className="text-xs text-mc-accent-yellow">★</span>}
                   </div>
                   <div className="text-xs text-mc-text-secondary truncate flex items-center gap-1">
                     {agent.role}
                     {agent.source === 'gateway' && (
-                      <span className="text-[10px] px-1 py-0 bg-blue-500/20 text-blue-400 rounded" title="Imported from Gateway">
+                      <span className="text-[10px] px-1 py-0 bg-blue-500/20 text-blue-400 rounded" title={t('importedFromGateway')}>
                         GW
                       </span>
                     )}
@@ -244,17 +253,17 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
                     {isConnecting ? (
                       <>
                         <Loader2 className="w-3 h-3 animate-spin" />
-                        <span>Connecting...</span>
+                        <span>{t('connecting')}</span>
                       </>
                     ) : openclawSession ? (
                       <>
                         <Zap className="w-3 h-3" />
-                        <span>OpenClaw Connected</span>
+                        <span>{t('openclawConnected')}</span>
                       </>
                     ) : (
                       <>
                         <ZapOff className="w-3 h-3" />
-                        <span>Connect to OpenClaw</span>
+                        <span>{t('connectToOpenclaw')}</span>
                       </>
                     )}
                   </button>
@@ -272,14 +281,14 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
             className="w-full min-h-11 flex items-center justify-center gap-2 px-3 bg-mc-bg-tertiary hover:bg-mc-border rounded text-sm text-mc-text-secondary hover:text-mc-text transition-colors"
           >
             <Plus className="w-4 h-4" />
-            Add Agent
+            {t('addAgent')}
           </button>
           <button
             onClick={() => setShowDiscoverModal(true)}
             className="w-full min-h-11 flex items-center justify-center gap-2 px-3 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 rounded text-sm text-blue-400 hover:text-blue-300 transition-colors"
           >
             <Search className="w-4 h-4" />
-            Import from Gateway
+            {t('importFromGateway')}
           </button>
         </div>
       )}

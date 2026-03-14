@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { Users, Save, AlertCircle, CheckCircle2, RefreshCw } from 'lucide-react';
 import { useMissionControl } from '@/lib/store';
 import type { WorkflowTemplate, WorkflowStage } from '@/lib/types';
@@ -20,6 +21,7 @@ interface RoleAssignment {
 const normalizeRole = (value: string) => value.trim().toLowerCase();
 
 export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
+  const t = useTranslations('team');
   const { agents } = useMissionControl();
   const [roles, setRoles] = useState<RoleAssignment[]>([]);
   const [workflows, setWorkflows] = useState<WorkflowTemplate[]>([]);
@@ -143,10 +145,10 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
         setTimeout(() => setSaved(false), 3000);
       } else {
         const data = await res.json();
-        setError(data.error || 'Failed to save roles');
+        setError(data.error || t('errors.save'));
       }
     } catch (err) {
-      setError('Failed to save roles');
+      setError(t('errors.save'));
     } finally {
       setSaving(false);
     }
@@ -198,16 +200,16 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
     <div className="space-y-6">
       {/* Workflow Template Selector */}
       <div>
-        <label className="block text-sm font-medium mb-2">Workflow Template</label>
+        <label className="block text-sm font-medium mb-2">{t('workflowTemplate')}</label>
         <select
           value={selectedWorkflow}
           onChange={(e) => handleWorkflowChange(e.target.value)}
           className="w-full min-h-11 bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent"
         >
-          <option value="">No workflow (single agent)</option>
+          <option value="">{t('noWorkflow')}</option>
           {workflows.map(wf => (
             <option key={wf.id} value={wf.id}>
-              {wf.name}{wf.is_default ? ' (Default)' : ''} — {wf.description}
+              {wf.name}{wf.is_default ? ` (${t('default')})` : ''} — {wf.description}
             </option>
           ))}
         </select>
@@ -216,7 +218,7 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
       {/* Workflow Stages Visualization */}
       {currentWorkflow && (
         <div>
-          <label className="block text-sm font-medium mb-2">Stages</label>
+          <label className="block text-sm font-medium mb-2">{t('stages')}</label>
           <div className="flex items-center gap-1 overflow-x-auto pb-1">
             {currentWorkflow.stages.map((stage: WorkflowStage, i: number) => (
               <div key={stage.id} className="flex items-center gap-1 flex-shrink-0">
@@ -243,20 +245,20 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
           <div className="flex items-start gap-2">
             <AlertCircle className="w-4 h-4 text-orange-300 mt-0.5 flex-shrink-0" />
             <div>
-              <p className="text-sm text-orange-200">
-                Missing agents for: {missingRoles.join(', ')}
-              </p>
-              <p className="text-xs text-orange-300/70 mt-1">
-                Assign agents below so the workflow can auto-handoff at each stage.
-              </p>
+                <p className="text-sm text-orange-200">
+                  {t('missingAgents', { roles: missingRoles.join(', ') })}
+                </p>
+                <p className="text-xs text-orange-300/70 mt-1">
+                  {t('missingHint')}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
       {/* Role Assignments */}
       <div>
-        <label className="block text-sm font-medium mb-2">Role Assignments</label>
+        <label className="block text-sm font-medium mb-2">{t('roleAssignments')}</label>
         <div className="space-y-3">
           {(uniqueRoles.length > 0 ? uniqueRoles : roles.map(r => r.role).filter(Boolean)).map(role => {
             if (!role) return null;
@@ -271,7 +273,7 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
                   onChange={(e) => handleRoleAgentChange(role, e.target.value)}
                   className="flex-1 min-h-11 bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent"
                 >
-                  <option value="">Unassigned</option>
+                  <option value="">{t('unassigned')}</option>
                   {agents.map(agent => (
                     <option key={agent.id} value={agent.id}>
                       {agent.avatar_emoji} {agent.name} — {agent.role}
@@ -293,7 +295,7 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
                 onChange={(e) => handleRoleAgentChange(r.role, e.target.value)}
                 className="flex-1 min-h-11 bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent"
               >
-                <option value="">Unassigned</option>
+                  <option value="">{t('unassigned')}</option>
                 {agents.map(agent => (
                   <option key={agent.id} value={agent.id}>
                     {agent.avatar_emoji} {agent.name} — {agent.role}
@@ -307,9 +309,9 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
             onClick={addCustomRole}
             disabled={addableRoles.length === 0}
             className="text-xs text-mc-accent hover:text-mc-accent/80 disabled:opacity-40 disabled:cursor-not-allowed"
-            title={addableRoles.length === 0 ? 'No additional role types available to add' : 'Add custom role from agent catalog'}
+            title={addableRoles.length === 0 ? t('noMoreRoles') : t('addCustomRoleTitle')}
           >
-            + Add custom role
+            {t('addCustomRole')}
           </button>
         </div>
       </div>
@@ -324,7 +326,7 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
       {saved && (
         <div className="p-3 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 text-green-400" />
-          <p className="text-sm text-green-400">Team saved successfully</p>
+          <p className="text-sm text-green-400">{t('saved')}</p>
         </div>
       )}
 
@@ -335,7 +337,7 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
         className="w-full min-h-11 flex items-center justify-center gap-2 bg-mc-accent text-mc-bg rounded text-sm font-medium hover:bg-mc-accent/90 disabled:opacity-50"
       >
         <Save className="w-4 h-4" />
-        {saving ? 'Saving...' : 'Save Team'}
+        {saving ? t('saving') : t('saveTeam')}
       </button>
     </div>
   );

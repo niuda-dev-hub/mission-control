@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { useRouter, usePathname, Link } from '@i18n/navigation';
 import { Zap, Settings, ChevronLeft, LayoutGrid } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 import { useMissionControl } from '@/lib/store';
 import { format } from 'date-fns';
 import type { Workspace } from '@/lib/types';
@@ -14,7 +14,10 @@ interface HeaderProps {
 }
 
 export function Header({ workspace, isPortrait = true }: HeaderProps) {
+  const t = useTranslations('common');
+  const locale = useLocale();
   const router = useRouter();
+  const pathname = usePathname();
   const { agents, tasks, isOnline } = useMissionControl();
   const [currentTime, setCurrentTime] = useState(new Date());
   const [activeSubAgents, setActiveSubAgents] = useState(0);
@@ -68,9 +71,17 @@ export function Header({ workspace, isPortrait = true }: HeaderProps) {
               </div>
             </div>
 
-            <button onClick={() => router.push('/settings')} className="min-h-11 min-w-11 p-2 hover:bg-mc-bg-tertiary rounded text-mc-text-secondary shrink-0" title="Settings">
+            <button onClick={() => router.push('/settings')} className="min-h-11 min-w-11 p-2 hover:bg-mc-bg-tertiary rounded text-mc-text-secondary shrink-0" title={t('settings')}>
               <Settings className="w-5 h-5" />
             </button>
+          <Link
+            href={pathname}
+            locale={locale === 'zh' ? 'en' : 'zh'}
+            className="h-8 min-w-8 px-2 rounded border border-mc-border bg-mc-bg text-mc-text-secondary hover:text-mc-text hover:bg-mc-bg-tertiary text-[11px] font-medium inline-flex items-center justify-center leading-none"
+            title={t('language')}
+          >
+            {locale === 'zh' ? 'EN' : '中文'}
+          </Link>
           </div>
 
           <div className="flex items-center gap-2 min-w-0">
@@ -82,17 +93,17 @@ export function Header({ workspace, isPortrait = true }: HeaderProps) {
               }`}
             >
               <span className={`w-2 h-2 rounded-full ${isOnline ? 'bg-mc-accent-green animate-pulse' : 'bg-mc-accent-red'}`} />
-              {isOnline ? 'ONLINE' : 'OFFLINE'}
+               {isOnline ? t('online') : t('offline')}
             </div>
 
             <div className="flex-1 grid grid-cols-2 gap-2">
               <div className="min-h-11 rounded border border-mc-border bg-mc-bg-tertiary px-2 flex items-center justify-center gap-1.5 text-xs">
                 <span className="text-mc-accent-cyan font-semibold">{activeAgents}</span>
-                <span className="text-mc-text-secondary">active</span>
+                <span className="text-mc-text-secondary">{t('active')}</span>
               </div>
               <div className="min-h-11 rounded border border-mc-border bg-mc-bg-tertiary px-2 flex items-center justify-center gap-1.5 text-xs">
                 <span className="text-mc-accent-purple font-semibold">{tasksInQueue}</span>
-                <span className="text-mc-text-secondary">queued</span>
+                <span className="text-mc-text-secondary">{t('queued')}</span>
               </div>
             </div>
           </div>
@@ -102,7 +113,7 @@ export function Header({ workspace, isPortrait = true }: HeaderProps) {
           <div className="flex items-center gap-2 md:gap-4 min-w-0">
             <div className="hidden sm:flex items-center gap-2">
               <Zap className="w-5 h-5 text-mc-accent-cyan" />
-              <span className="font-semibold text-mc-text uppercase tracking-wider text-sm">Mission Control</span>
+               <span className="font-semibold text-mc-text uppercase tracking-wider text-sm">{t('missionControl')}</span>
             </div>
 
             {workspace ? (
@@ -120,7 +131,7 @@ export function Header({ workspace, isPortrait = true }: HeaderProps) {
             ) : (
               <Link href="/" className="flex items-center gap-2 px-3 py-1 bg-mc-bg-tertiary rounded hover:bg-mc-bg transition-colors">
                 <LayoutGrid className="w-4 h-4" />
-                <span className="text-sm">All Workspaces</span>
+                 <span className="text-sm">{t('allWorkspaces')}</span>
               </Link>
             )}
           </div>
@@ -129,11 +140,11 @@ export function Header({ workspace, isPortrait = true }: HeaderProps) {
             <div className="hidden lg:flex items-center gap-8">
               <div className="text-center">
                 <div className="text-2xl font-bold text-mc-accent-cyan">{activeAgents}</div>
-                <div className="text-xs text-mc-text-secondary uppercase">Agents Active</div>
+                 <div className="text-xs text-mc-text-secondary uppercase">{t('agents')} {t('active')}</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-mc-accent-purple">{tasksInQueue}</div>
-                <div className="text-xs text-mc-text-secondary uppercase">Tasks in Queue</div>
+                 <div className="text-xs text-mc-text-secondary uppercase">{t('missionQueue')}</div>
               </div>
             </div>
           )}
@@ -148,11 +159,19 @@ export function Header({ workspace, isPortrait = true }: HeaderProps) {
               }`}
             >
               <span className={`w-2 h-2 rounded-full ${isOnline ? 'bg-mc-accent-green animate-pulse' : 'bg-mc-accent-red'}`} />
-              {isOnline ? 'ONLINE' : 'OFFLINE'}
+               {isOnline ? t('online') : t('offline')}
             </div>
-            <button onClick={() => router.push('/settings')} className="min-h-11 min-w-11 p-2 hover:bg-mc-bg-tertiary rounded text-mc-text-secondary" title="Settings">
+            <button onClick={() => router.push('/settings')} className="min-h-11 min-w-11 p-2 hover:bg-mc-bg-tertiary rounded text-mc-text-secondary" title={t('settings')}>
               <Settings className="w-5 h-5" />
             </button>
+            <Link
+              href={pathname}
+              locale={locale === 'zh' ? 'en' : 'zh'}
+              className="h-8 px-2 rounded border border-mc-border bg-mc-bg text-mc-text-secondary hover:text-mc-text hover:bg-mc-bg-tertiary text-[11px] font-medium inline-flex items-center justify-center leading-none"
+              title="Language"
+            >
+              {locale === 'zh' ? 'EN' : '中文'}
+            </Link>
           </div>
         </>
       )}

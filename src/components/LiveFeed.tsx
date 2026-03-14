@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ChevronRight, ChevronLeft, Clock } from 'lucide-react';
 import { useMissionControl } from '@/lib/store';
 import type { Event } from '@/lib/types';
@@ -14,6 +15,7 @@ interface LiveFeedProps {
 }
 
 export function LiveFeed({ mobileMode = false, isPortrait = true }: LiveFeedProps) {
+  const t = useTranslations('feed');
   const { events } = useMissionControl();
   const [filter, setFilter] = useState<FeedFilter>('all');
   const [isMinimized, setIsMinimized] = useState(false);
@@ -40,12 +42,12 @@ export function LiveFeed({ mobileMode = false, isPortrait = true }: LiveFeedProp
             <button
               onClick={toggleMinimize}
               className="p-1 rounded hover:bg-mc-bg-tertiary text-mc-text-secondary hover:text-mc-text transition-colors"
-              aria-label={effectiveMinimized ? 'Expand feed' : 'Minimize feed'}
+              aria-label={effectiveMinimized ? t('expand') : t('minimize')}
             >
               {effectiveMinimized ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
             </button>
           )}
-          {!effectiveMinimized && <span className="text-sm font-medium uppercase tracking-wider">Live Feed</span>}
+          {!effectiveMinimized && <span className="text-sm font-medium uppercase tracking-wider">{t('title')}</span>}
         </div>
 
         {!effectiveMinimized && (
@@ -58,7 +60,7 @@ export function LiveFeed({ mobileMode = false, isPortrait = true }: LiveFeedProp
                   filter === tab ? 'bg-mc-accent text-mc-bg font-medium' : 'text-mc-text-secondary hover:bg-mc-bg-tertiary'
                 }`}
               >
-                {tab}
+                {tab === 'all' ? t('filters.all') : tab === 'tasks' ? t('filters.tasks') : t('filters.agents')}
               </button>
             ))}
           </div>
@@ -68,7 +70,7 @@ export function LiveFeed({ mobileMode = false, isPortrait = true }: LiveFeedProp
       {!effectiveMinimized && (
         <div className="flex-1 overflow-y-auto p-2 space-y-1 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
           {filteredEvents.length === 0 ? (
-            <div className="text-center py-8 text-mc-text-secondary text-sm">No events yet</div>
+            <div className="text-center py-8 text-mc-text-secondary text-sm">{t('empty')}</div>
           ) : (
             filteredEvents.map((event) => <EventItem key={event.id} event={event} />)
           )}

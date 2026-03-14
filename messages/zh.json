@@ -1,0 +1,386 @@
+{
+  "common": {
+    "missionControl": "任务控制台",
+    "allWorkspaces": "所有工作区",
+    "selectWorkspace": "选择一个工作区以查看任务队列和智能体",
+    "activityDashboard": "活动看板",
+    "newWorkspace": "新建工作区",
+    "addWorkspace": "添加工作区",
+    "createWorkspace": "创建工作区",
+    "noWorkspaces": "暂无工作区",
+    "getStarted": "创建你的第一个工作区开始使用",
+    "loadingWorkspaces": "正在加载工作区...",
+    "agents": "智能体",
+    "active": "活跃",
+    "queued": "排队",
+    "online": "在线",
+    "offline": "离线",
+    "settings": "设置",
+    "back": "返回",
+    "backToDashboard": "返回看板",
+    "settingsTitle": "设置",
+    "saveChanges": "保存更改",
+    "saving": "保存中...",
+    "resetToDefaults": "恢复默认",
+    "settingsSaved": "✓ 设置已保存",
+    "loadingSettings": "正在加载设置...",
+    "workspacePaths": "工作区路径",
+    "workspacePathsHelp": "配置 Mission Control 存储项目与交付物的位置。",
+    "workspaceBasePath": "工作区根路径",
+    "workspaceBasePathHelp": "Mission Control 文件的基础目录。可用 ~ 表示主目录。",
+    "projectsPath": "项目路径",
+    "projectsPathHelp": "项目文件夹创建的目录。每个项目会有单独文件夹。",
+    "defaultProjectName": "默认项目名称",
+    "defaultProjectNameHelp": "新项目的默认名称，可按项目调整。",
+    "defaultAgentNames": {
+      "builder": "构建者",
+      "tester": "测试者",
+      "reviewer": "评审者",
+      "learner": "学习者"
+    },
+    "apiConfiguration": "API 配置",
+    "apiConfigurationHelp": "配置智能体编排的 Mission Control API 地址。",
+    "missionControlUrl": "Mission Control 地址",
+    "missionControlUrlHelp": "智能体访问该实例的基础 URL。",
+    "saveSuccess": "✓ 设置已保存",
+    "resetConfirm": "确定恢复所有设置为默认？此操作不可撤销。",
+    "saveFailed": "保存设置失败",
+    "missionQueue": "任务队列",
+    "newTask": "新建任务",
+    "noTasksInStatus": "该状态下暂无任务。",
+    "activeSubAgents": "活跃子智能体：",
+    "expandAgents": "展开智能体",
+    "minimizeAgents": "收起智能体",
+    "filterAll": "全部",
+    "filterWorking": "工作中",
+    "filterStandby": "待命",
+    "workspaceNotFound": "未找到工作区",
+    "workspaceNotFoundDetail": "工作区 “{slug}” 不存在。",
+    "loadingWorkspace": "正在加载 {slug}...",
+    "addAgent": "添加智能体",
+    "importFromGateway": "从网关导入",
+    "connecting": "连接中...",
+    "openclawConnected": "OpenClaw 已连接",
+    "connectToOpenclaw": "连接 OpenClaw",
+    "connectFailed": "连接失败",
+    "unknownError": "未知错误",
+    "feedTab": "动态",
+    "moveTask": "移动任务",
+    "assignedBlocked": "已分配但受阻：{error}",
+    "assignedValidating": "已分配，正在校验 — 自动启动后将进入进行中。",
+    "needsAgent": "需要智能体 — 分配后开始",
+    "inQueueVerification": "排队中 — 等待验收",
+    "moveStatus": "移动状态",
+    "continuePlanning": "继续规划",
+    "taskMoved": "任务“{title}”已移动到 {status}",
+    "unknownAgent": "未知智能体",
+    "importedFromGateway": "从网关导入",
+    "language": "语言"
+  },
+  "discoverAgents": {
+    "title": "发现网关智能体",
+    "subtitle": "从 OpenClaw 网关导入现有智能体",
+    "loading": "正在从网关发现智能体...",
+    "found": "发现 {count} 个智能体",
+    "alreadyImported": "{count} 个已导入",
+    "selected": "已选 {count} 个",
+    "selectHint": "选择要导入的智能体",
+    "importResult": "已导入 {imported} 个智能体{skipped, plural, =0 {} other {（跳过 {skipped} 个）}}",
+    "actions": {
+      "refresh": "刷新",
+      "selectAll": "全选",
+      "deselectAll": "取消全选",
+      "done": "完成",
+      "cancel": "取消",
+      "import": "导入{count, plural, =0 {} other {（{count}）}}",
+      "importing": "导入中..."
+    },
+    "badges": {
+      "imported": "已导入"
+    },
+    "labels": {
+      "model": "模型：{model}",
+      "channel": "频道：{channel}",
+      "status": "状态：{status}",
+      "id": "ID：{id}"
+    },
+    "empty": {
+      "title": "网关中未发现智能体。",
+      "subtitle": "请确认 OpenClaw 网关正在运行并已配置智能体。"
+    },
+    "errors": {
+      "discover": "发现智能体失败（{status}）",
+      "connect": "连接服务器失败",
+      "import": "导入智能体失败"
+    }
+  },
+  "debug": {
+    "title": "调试",
+    "eventsTitle": "调试事件",
+    "clear": "清空",
+    "waiting": "等待事件..."
+  },
+  "demo": {
+    "message": "实时演示 — AI 智能体正在实时工作。这是只读模拟。",
+    "cta": "获取 Mission Control →"
+  },
+  "status": {
+    "planning": "📋 规划中",
+    "inbox": "收件箱",
+    "assigned": "已分配",
+    "inProgress": "进行中",
+    "testing": "测试中",
+    "review": "评审",
+    "verification": "验收",
+    "done": "完成"
+  },
+  "activity": {
+    "loadingDashboard": "正在加载活动看板...",
+    "dashboardTitle": "智能体活动看板",
+    "allWorkspaces": "所有工作区",
+    "live": "实时（SSE）",
+    "polling": "轮询回退",
+    "liveBadge": "实时",
+    "fallbackBadge": "回退",
+    "all": "全部",
+    "agents": "智能体",
+    "working": "工作中",
+    "blocked": "受阻",
+    "idle": "空闲",
+    "activeTasks": "活跃任务",
+    "nowWorking": "当前工作中",
+    "noneWorking": "当前没有标记为工作中的智能体。",
+    "noActiveTask": "无关联任务",
+    "updatedPrefix": "更新于",
+    "blockedIndicator": "阻塞提示：等待测试/评审或离线且仍有指派任务",
+    "timeline": "时间线",
+    "noRecentActivity": "该智能体暂无近期活动。"
+  },
+  "feed": {
+    "title": "实时动态",
+    "expand": "展开动态",
+    "minimize": "收起动态",
+    "filters": {
+      "all": "全部",
+      "tasks": "任务",
+      "agents": "智能体"
+    },
+    "empty": "暂无事件"
+  },
+  "task": {
+    "createTitle": "创建新任务",
+    "save": "保存",
+    "saving": "保存中...",
+    "saveAndNew": "保存并新建",
+    "cancel": "取消",
+    "delete": "删除",
+    "unassigned": "未分配",
+    "addNewAgent": "➕ 添加新智能体...",
+    "newTaskMessage": "新任务：{title}",
+    "confirmDelete": "确认删除 \"{title}\"？",
+    "saveFailed": "保存失败（{status}）",
+    "unknownError": "未知错误",
+    "unknownAgent": "未知智能体",
+    "networkError": "网络错误，请重试",
+    "fields": {
+      "title": "标题",
+      "description": "描述",
+      "assignTo": "分配给",
+      "priority": "优先级",
+      "dueDate": "截止时间"
+    },
+    "placeholders": {
+      "title": "要做什么？",
+      "description": "添加更多细节..."
+    },
+    "planning": {
+      "enableTitle": "启用规划模式",
+      "enableDescription": "适合需要详细需求的复杂项目。你将回答一些问题来定义范围、目标与约束后再开始。简单任务可跳过。"
+    },
+    "priority": {
+      "low": "低",
+      "normal": "普通",
+      "high": "高",
+      "urgent": "紧急"
+    },
+    "tabs": {
+      "overview": "概览",
+      "planning": "规划",
+      "team": "团队",
+      "activity": "活动",
+      "deliverables": "交付物",
+      "images": "图片",
+      "sessions": "会话"
+    }
+  },
+  "agent": {
+    "createTitle": "创建新智能体",
+    "editTitle": "编辑 {name}",
+    "save": "保存",
+    "saving": "保存中...",
+    "cancel": "取消",
+    "delete": "删除",
+    "confirmDelete": "确认删除 {name}？",
+    "fields": {
+      "avatar": "头像",
+      "name": "名称",
+      "role": "角色",
+      "description": "描述",
+      "status": "状态",
+      "master": "主控编排（可协调其他智能体）",
+      "model": "模型"
+    },
+    "placeholders": {
+      "name": "智能体名称",
+      "role": "例如：代码与自动化",
+      "description": "这个智能体做什么？"
+    },
+    "status": {
+      "standby": "待命",
+      "working": "工作中",
+      "offline": "离线"
+    },
+    "model": {
+      "default": "默认",
+      "loading": "正在加载可用模型...",
+      "useDefault": "-- 使用默认模型 --",
+      "help": "该智能体使用的 AI 模型。留空则使用 OpenClaw 默认模型。"
+    },
+    "tabs": {
+      "info": "信息",
+      "soul": "SOUL.md",
+      "user": "USER.md",
+      "agents": "AGENTS.md"
+    },
+    "soul": {
+      "label": "SOUL.md - 智能体人格与身份",
+      "placeholder": "# 智能体名称\n\n定义该智能体的人格、价值观与沟通风格..."
+    },
+    "user": {
+      "label": "USER.md - 人类上下文",
+      "placeholder": "# 用户上下文\n\n关于该智能体协作对象的信息..."
+    },
+    "agents": {
+      "label": "AGENTS.md - 团队认知",
+      "placeholder": "# 团队名单\n\n关于该智能体协作的其他智能体信息..."
+    }
+  },
+  "workspace": {
+    "createTitle": "创建新工作区",
+    "createAction": "创建工作区",
+    "creating": "创建中...",
+    "createError": "创建工作区失败",
+    "cancel": "取消",
+    "deleteTitle": "删除工作区",
+    "deleteSubtitle": "此操作无法撤销",
+    "deleteAction": "删除工作区",
+    "deleting": "删除中...",
+    "deleteConfirm": "确认删除 {name}？",
+    "deleteHasTasks": "⚠️ 该工作区有 {count} 个任务，请先删除任务。",
+    "deleteError": "删除工作区失败",
+    "fields": {
+      "icon": "图标",
+      "name": "名称"
+    },
+    "placeholders": {
+      "name": "例如：阿克米公司"
+    },
+    "tasksCount": "{count} 个任务",
+    "agentsCount": "{count} 个智能体"
+  },
+  "sessions": {
+    "loading": "正在加载会话...",
+    "empty": "暂无子智能体会话",
+    "fallbackAgent": "子智能体",
+    "sessionLabel": "会话",
+    "duration": "时长",
+    "started": "开始于",
+    "channel": "频道",
+    "confirmDelete": "确认删除该子智能体会话？",
+    "markComplete": "标记为完成",
+    "delete": "删除会话"
+  },
+  "activityLog": {
+    "loading": "正在加载活动...",
+    "empty": "暂无活动"
+  },
+  "deliverables": {
+    "loading": "正在加载交付物...",
+    "empty": "暂无交付物",
+    "preview": "在浏览器中预览",
+    "openUrl": "打开链接",
+    "revealInFinder": "在 Finder 中显示",
+    "types": {
+      "file": "文件",
+      "url": "链接",
+      "artifact": "制品"
+    },
+    "errors": {
+      "notFound": "未找到文件：\n{path}\n\n文件可能已移动或删除。",
+      "forbidden": "无法打开该位置：\n{path}\n\n路径不在允许目录内。",
+      "copied": "无法打开 Finder，路径已复制到剪贴板：\n{path}",
+      "path": "文件路径：\n{path}",
+      "unknown": "未知错误"
+    }
+  },
+  "team": {
+    "workflowTemplate": "工作流模板",
+    "noWorkflow": "无工作流（单智能体）",
+    "default": "默认",
+    "stages": "阶段",
+    "missingAgents": "以下角色缺少智能体：{roles}",
+    "missingHint": "请在下方分配智能体，以便工作流自动交接。",
+    "roleAssignments": "角色分配",
+    "unassigned": "未分配",
+    "noMoreRoles": "没有可添加的角色类型",
+    "addCustomRoleTitle": "从智能体角色库添加自定义角色",
+    "addCustomRole": "+ 添加自定义角色",
+    "saved": "团队已保存",
+    "saving": "保存中...",
+    "saveTeam": "保存团队",
+    "errors": {
+      "save": "保存角色失败"
+    }
+  },
+  "planning": {
+    "loadingState": "正在加载规划状态...",
+    "complete": "规划完成",
+    "dispatchFailed": "⚠️ 派发失败",
+    "dispatchFailedTitle": "任务派发失败",
+    "retryDispatch": "重试派发",
+    "retrying": "重试中...",
+    "retryHint": "将尝试把任务分配给智能体",
+    "deliverables": "交付物：",
+    "successCriteria": "成功标准：",
+    "agentsCreated": "已创建智能体：",
+    "startTitle": "开始规划",
+    "startDescription": "我会问几个问题来了解你的需求。所有问题都是多选题——点击即可回答。",
+    "startAction": "开始规划",
+    "starting": "开始中...",
+    "inProgress": "规划进行中...",
+    "cancel": "取消",
+    "canceling": "取消中...",
+    "other": "其他",
+    "otherPlaceholder": "请说明...",
+    "retry": "重试",
+    "sending": "发送中...",
+    "continue": "继续 →",
+    "waitingResponse": "等待响应...",
+    "waitingNextQuestion": "等待下一个问题...",
+    "conversationTitle": "查看对话（{count} 条消息）",
+    "you": "你",
+    "orchestrator": "编排器",
+    "confirmCancel": "确定要取消规划吗？这将重置规划状态。",
+    "dispatchFailedMessage": "规划完成但派发失败：{error}",
+    "processingWarning": "编排器仍在处理。你可以安全刷新 — 规划模式不会丢失。",
+    "processingTimeout": "编排器等待时间过长已超时。请刷新页面并重试上一次回答。",
+    "errors": {
+      "loadState": "加载规划状态失败",
+      "start": "启动规划失败",
+      "submit": "提交回答失败",
+      "retryDispatch": "重试派发失败：{error}",
+      "retryDispatchGeneric": "重试派发失败",
+      "cancel": "取消规划失败"
+    }
+  }
+}

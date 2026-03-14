@@ -1,0 +1,386 @@
+{
+  "common": {
+    "missionControl": "Mission Control",
+    "allWorkspaces": "All Workspaces",
+    "selectWorkspace": "Select a workspace to view its mission queue and agents",
+    "activityDashboard": "Activity Dashboard",
+    "newWorkspace": "New Workspace",
+    "addWorkspace": "Add Workspace",
+    "createWorkspace": "Create Workspace",
+    "noWorkspaces": "No workspaces yet",
+    "getStarted": "Create your first workspace to get started",
+    "loadingWorkspaces": "Loading workspaces...",
+    "agents": "Agents",
+    "active": "active",
+    "queued": "queued",
+    "online": "ONLINE",
+    "offline": "OFFLINE",
+    "settings": "Settings",
+    "back": "Back",
+    "backToDashboard": "Back to Dashboard",
+    "settingsTitle": "Settings",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "resetToDefaults": "Reset to Defaults",
+    "settingsSaved": "✓ Settings saved successfully",
+    "loadingSettings": "Loading settings...",
+    "workspacePaths": "Workspace Paths",
+    "workspacePathsHelp": "Configure where Mission Control stores projects and deliverables.",
+    "workspaceBasePath": "Workspace Base Path",
+    "workspaceBasePathHelp": "Base directory for all Mission Control files. Use ~ for home directory.",
+    "projectsPath": "Projects Path",
+    "projectsPathHelp": "Directory where project folders are created. Each project gets its own folder.",
+    "defaultProjectName": "Default Project Name",
+    "defaultProjectNameHelp": "Default name for new projects. Can be changed per project.",
+    "defaultAgentNames": {
+      "builder": "Builder",
+      "tester": "Tester",
+      "reviewer": "Reviewer",
+      "learner": "Learner"
+    },
+    "apiConfiguration": "API Configuration",
+    "apiConfigurationHelp": "Configure Mission Control API URL for agent orchestration.",
+    "missionControlUrl": "Mission Control URL",
+    "missionControlUrlHelp": "Base URL agents should use to reach this Mission Control instance.",
+    "saveSuccess": "✓ Settings saved successfully",
+    "resetConfirm": "Reset all settings to defaults? This cannot be undone.",
+    "saveFailed": "Failed to save settings",
+    "missionQueue": "Mission Queue",
+    "newTask": "New Task",
+    "noTasksInStatus": "No tasks in this status.",
+    "activeSubAgents": "Active Sub-Agents:",
+    "expandAgents": "Expand agents",
+    "minimizeAgents": "Minimize agents",
+    "filterAll": "all",
+    "filterWorking": "working",
+    "filterStandby": "standby",
+    "workspaceNotFound": "Workspace Not Found",
+    "workspaceNotFoundDetail": "The workspace “{slug}” doesn't exist.",
+    "loadingWorkspace": "Loading {slug}...",
+    "addAgent": "Add Agent",
+    "importFromGateway": "Import from Gateway",
+    "connecting": "Connecting...",
+    "openclawConnected": "OpenClaw Connected",
+    "connectToOpenclaw": "Connect to OpenClaw",
+    "connectFailed": "Failed to connect",
+    "unknownError": "Unknown error",
+    "feedTab": "Feed",
+    "moveTask": "Move task",
+    "assignedBlocked": "Assigned, but blocked: {error}",
+    "assignedValidating": "Assigned and validating — auto-start will move this to In Progress.",
+    "needsAgent": "Needs agent — assign to start",
+    "inQueueVerification": "In queue — waiting for verification",
+    "moveStatus": "Move Status",
+    "continuePlanning": "Continue planning",
+    "taskMoved": "Task \"{title}\" moved to {status}",
+    "unknownAgent": "Unknown Agent",
+    "importedFromGateway": "Imported from Gateway",
+    "language": "Language"
+  },
+  "discoverAgents": {
+    "title": "Discover Gateway Agents",
+    "subtitle": "Import existing agents from the OpenClaw Gateway",
+    "loading": "Discovering agents from Gateway...",
+    "found": "{count} agent(s) found",
+    "alreadyImported": "{count} already imported",
+    "selected": "{count} selected",
+    "selectHint": "Select agents to import",
+    "importResult": "Imported {imported} agent(s){skipped, plural, =0 {} other { ({skipped} skipped)}}",
+    "actions": {
+      "refresh": "Refresh",
+      "selectAll": "Select All",
+      "deselectAll": "Deselect All",
+      "done": "Done",
+      "cancel": "Cancel",
+      "import": "Import{count, plural, =0 {} other { ({count})}}",
+      "importing": "Importing..."
+    },
+    "badges": {
+      "imported": "Imported"
+    },
+    "labels": {
+      "model": "Model: {model}",
+      "channel": "Channel: {channel}",
+      "status": "Status: {status}",
+      "id": "ID: {id}"
+    },
+    "empty": {
+      "title": "No agents found in the Gateway.",
+      "subtitle": "Make sure the OpenClaw Gateway is running and has agents configured."
+    },
+    "errors": {
+      "discover": "Failed to discover agents ({status})",
+      "connect": "Failed to connect to the server",
+      "import": "Failed to import agents"
+    }
+  },
+  "debug": {
+    "title": "Debug",
+    "eventsTitle": "Debug Events",
+    "clear": "Clear",
+    "waiting": "Waiting for events..."
+  },
+  "demo": {
+    "message": "Live Demo — AI agents are working in real-time. This is a read-only simulation.",
+    "cta": "Get Mission Control →"
+  },
+  "status": {
+    "planning": "📋 Planning",
+    "inbox": "Inbox",
+    "assigned": "Assigned",
+    "inProgress": "In Progress",
+    "testing": "Testing",
+    "review": "Review",
+    "verification": "Verification",
+    "done": "Done"
+  },
+  "activity": {
+    "loadingDashboard": "Loading activity dashboard...",
+    "dashboardTitle": "Agent Activity Dashboard",
+    "allWorkspaces": "All workspaces",
+    "live": "Live (SSE)",
+    "polling": "Polling fallback",
+    "liveBadge": "LIVE",
+    "fallbackBadge": "FALLBACK",
+    "all": "All",
+    "agents": "Agents",
+    "working": "Working",
+    "blocked": "Blocked",
+    "idle": "Idle",
+    "activeTasks": "Active Tasks",
+    "nowWorking": "Now Working",
+    "noneWorking": "No agents currently marked as working.",
+    "noActiveTask": "No active task linked",
+    "updatedPrefix": "Updated",
+    "blockedIndicator": "Blocked indicator: waiting in testing/review or offline with assigned work",
+    "timeline": "Timeline",
+    "noRecentActivity": "No recent activity for this agent."
+  },
+  "feed": {
+    "title": "Live Feed",
+    "expand": "Expand feed",
+    "minimize": "Minimize feed",
+    "filters": {
+      "all": "all",
+      "tasks": "tasks",
+      "agents": "agents"
+    },
+    "empty": "No events yet"
+  },
+  "task": {
+    "createTitle": "Create New Task",
+    "save": "Save",
+    "saving": "Saving...",
+    "saveAndNew": "Save & New",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "unassigned": "Unassigned",
+    "addNewAgent": "➕ Add new agent...",
+    "newTaskMessage": "New task: {title}",
+    "confirmDelete": "Delete \"{title}\"?",
+    "saveFailed": "Save failed ({status})",
+    "unknownError": "Unknown error",
+    "unknownAgent": "Unknown Agent",
+    "networkError": "Network error — please try again",
+    "fields": {
+      "title": "Title",
+      "description": "Description",
+      "assignTo": "Assign to",
+      "priority": "Priority",
+      "dueDate": "Due Date"
+    },
+    "placeholders": {
+      "title": "What needs to be done?",
+      "description": "Add details..."
+    },
+    "planning": {
+      "enableTitle": "Enable Planning Mode",
+      "enableDescription": "Best for complex projects that need detailed requirements. You'll answer a few questions to define scope, goals, and constraints before work begins. Skip this for quick, straightforward tasks."
+    },
+    "priority": {
+      "low": "LOW",
+      "normal": "NORMAL",
+      "high": "HIGH",
+      "urgent": "URGENT"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "planning": "Planning",
+      "team": "Team",
+      "activity": "Activity",
+      "deliverables": "Deliverables",
+      "images": "Images",
+      "sessions": "Sessions"
+    }
+  },
+  "agent": {
+    "createTitle": "Create New Agent",
+    "editTitle": "Edit {name}",
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "confirmDelete": "Delete {name}?",
+    "fields": {
+      "avatar": "Avatar",
+      "name": "Name",
+      "role": "Role",
+      "description": "Description",
+      "status": "Status",
+      "master": "Master Orchestrator (can coordinate other agents)",
+      "model": "Model"
+    },
+    "placeholders": {
+      "name": "Agent name",
+      "role": "e.g., Code & Automation",
+      "description": "What does this agent do?"
+    },
+    "status": {
+      "standby": "Standby",
+      "working": "Working",
+      "offline": "Offline"
+    },
+    "model": {
+      "default": "Default",
+      "loading": "Loading available models...",
+      "useDefault": "-- Use Default Model --",
+      "help": "AI model used by this agent. Leave empty to use OpenClaw default."
+    },
+    "tabs": {
+      "info": "Info",
+      "soul": "SOUL.md",
+      "user": "USER.md",
+      "agents": "AGENTS.md"
+    },
+    "soul": {
+      "label": "SOUL.md - Agent Personality & Identity",
+      "placeholder": "# Agent Name\n\nDefine this agent's personality, values, and communication style..."
+    },
+    "user": {
+      "label": "USER.md - Context About the Human",
+      "placeholder": "# User Context\n\nInformation about the human this agent works with..."
+    },
+    "agents": {
+      "label": "AGENTS.md - Team Awareness",
+      "placeholder": "# Team Roster\n\nInformation about other agents this agent works with..."
+    }
+  },
+  "workspace": {
+    "createTitle": "Create New Workspace",
+    "createAction": "Create Workspace",
+    "creating": "Creating...",
+    "createError": "Failed to create workspace",
+    "cancel": "Cancel",
+    "deleteTitle": "Delete Workspace",
+    "deleteSubtitle": "This action cannot be undone",
+    "deleteAction": "Delete Workspace",
+    "deleting": "Deleting...",
+    "deleteConfirm": "Are you sure you want to delete {name}?",
+    "deleteHasTasks": "⚠️ This workspace has {count} task(s). Delete them first.",
+    "deleteError": "Failed to delete workspace",
+    "fields": {
+      "icon": "Icon",
+      "name": "Name"
+    },
+    "placeholders": {
+      "name": "e.g., Acme Corp"
+    },
+    "tasksCount": "{count} tasks",
+    "agentsCount": "{count} agents"
+  },
+  "sessions": {
+    "loading": "Loading sessions...",
+    "empty": "No sub-agent sessions yet",
+    "fallbackAgent": "Sub-Agent",
+    "sessionLabel": "Session",
+    "duration": "Duration",
+    "started": "Started",
+    "channel": "Channel",
+    "confirmDelete": "Delete this sub-agent session?",
+    "markComplete": "Mark as complete",
+    "delete": "Delete session"
+  },
+  "activityLog": {
+    "loading": "Loading activities...",
+    "empty": "No activity yet"
+  },
+  "deliverables": {
+    "loading": "Loading deliverables...",
+    "empty": "No deliverables yet",
+    "preview": "Preview in browser",
+    "openUrl": "Open URL",
+    "revealInFinder": "Reveal in Finder",
+    "types": {
+      "file": "file",
+      "url": "url",
+      "artifact": "artifact"
+    },
+    "errors": {
+      "notFound": "File not found:\n{path}\n\nThe file may have been moved or deleted.",
+      "forbidden": "Cannot open this location:\n{path}\n\nPath is outside allowed directories.",
+      "copied": "Could not open Finder. Path copied to clipboard:\n{path}",
+      "path": "File path:\n{path}",
+      "unknown": "Unknown error"
+    }
+  },
+  "team": {
+    "workflowTemplate": "Workflow Template",
+    "noWorkflow": "No workflow (single agent)",
+    "default": "Default",
+    "stages": "Stages",
+    "missingAgents": "Missing agents for: {roles}",
+    "missingHint": "Assign agents below so the workflow can auto-handoff at each stage.",
+    "roleAssignments": "Role Assignments",
+    "unassigned": "Unassigned",
+    "noMoreRoles": "No additional role types available to add",
+    "addCustomRoleTitle": "Add custom role from agent catalog",
+    "addCustomRole": "+ Add custom role",
+    "saved": "Team saved successfully",
+    "saving": "Saving...",
+    "saveTeam": "Save Team",
+    "errors": {
+      "save": "Failed to save roles"
+    }
+  },
+  "planning": {
+    "loadingState": "Loading planning state...",
+    "complete": "Planning Complete",
+    "dispatchFailed": "⚠️ Dispatch Failed",
+    "dispatchFailedTitle": "Task dispatch failed",
+    "retryDispatch": "Retry Dispatch",
+    "retrying": "Retrying...",
+    "retryHint": "This will attempt to assign the task to an agent",
+    "deliverables": "Deliverables:",
+    "successCriteria": "Success Criteria:",
+    "agentsCreated": "Agents Created:",
+    "startTitle": "Start Planning",
+    "startDescription": "I'll ask you a few questions to understand exactly what you need. All questions are multiple choice — just click to answer.",
+    "startAction": "Start Planning",
+    "starting": "Starting...",
+    "inProgress": "Planning in progress...",
+    "cancel": "Cancel",
+    "canceling": "Canceling...",
+    "other": "Other",
+    "otherPlaceholder": "Please specify...",
+    "retry": "Retry",
+    "sending": "Sending...",
+    "continue": "Continue →",
+    "waitingResponse": "Waiting for response...",
+    "waitingNextQuestion": "Waiting for next question...",
+    "conversationTitle": "View conversation ({count} messages)",
+    "you": "You",
+    "orchestrator": "Orchestrator",
+    "confirmCancel": "Are you sure you want to cancel planning? This will reset the planning state.",
+    "dispatchFailedMessage": "Planning completed but dispatch failed: {error}",
+    "processingWarning": "The orchestrator is still processing. You can refresh safely — you will not lose your place in Planning Mode.",
+    "processingTimeout": "The orchestrator timed out after an extended wait. Please refresh the page and retry your last answer.",
+    "errors": {
+      "loadState": "Failed to load planning state",
+      "start": "Failed to start planning",
+      "submit": "Failed to submit answer",
+      "retryDispatch": "Failed to retry dispatch: {error}",
+      "retryDispatchGeneric": "Failed to retry dispatch",
+      "cancel": "Failed to cancel planning"
+    }
+  }
+}

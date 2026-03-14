@@ -1,7 +1,6 @@
-'use client';
+import { redirect } from 'next/navigation';
+import { defaultLocale } from '@i18n/routing';
 
-import { WorkspaceDashboard } from '@/components/WorkspaceDashboard';
-
-export default function HomePage() {
-  return <WorkspaceDashboard />;
+export default function RootPage() {
+  redirect(`/${defaultLocale}`);
 }
