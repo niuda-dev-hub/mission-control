@@ -169,7 +169,7 @@ npx next start -p 4000
 
 ## 🐳 Docker
 
-可以使用仓库内的 `Dockerfile` 与 `docker-compose.yml` 运行。
+可以直接使用已构建好的 Docker Hub 镜像（`niuda123/mission-control`）。
 
 ### 前置条件
 
@@ -195,10 +195,10 @@ OPENCLAW_GATEWAY_TOKEN=your-token-here
 - 如果 OpenClaw 在宿主机，使用 `host.docker.internal`。
 - 如果在其他机器，请改成可访问的 `ws://` / `wss://` 地址。
 
-### 2) 构建并启动
+### 2) 启动（拉取镜像）
 
 ```bash
-docker compose up -d --build
+docker compose up -d
 ```
 
 访问 **http://localhost:4000**。

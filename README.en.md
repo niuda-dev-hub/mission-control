@@ -168,7 +168,7 @@ npx next start -p 4000
 
 ## 🐳 Docker
 
-You can run Mission Control in a container using the included `Dockerfile` and `docker-compose.yml`.
+You can use the prebuilt Docker Hub image (`niuda123/mission-control`).
 
 ### Prerequisites
 
@@ -194,10 +194,10 @@ Notes:
 - Use `host.docker.internal` when OpenClaw runs on your host machine.
 - If OpenClaw is on another machine, set its reachable `ws://` or `wss://` URL instead.
 
-### 2. Build and start
+### 2. Start (pull image)
 
 ```bash
-docker compose up -d --build
+docker compose up -d
 ```
 
 Open **http://localhost:4000**.

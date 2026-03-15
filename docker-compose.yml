@@ -1,10 +1,7 @@
 services:
   mission-control:
     container_name: mission-control
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: mission-control:latest
+    image: niuda123/mission-control:latest
     ports:
       - "4000:4000"
     env_file:
