@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.2.1] - 2026-03-22
+
+### Added
+- **Health Check Endpoints** — `GET /api/health` (unauthenticated summary, authenticated full detail) and `GET /api/health/metrics` (Prometheus text exposition). Checks DB integrity, gateway connectivity, agent status, task queue depth, research cycle freshness, and cost cap utilization. ([PR #87](https://github.com/crshdn/mission-control/pull/87))
+- **Database Backup API** — On-demand backup creation, listing, and restoration via `/api/admin/backups`. Optional S3 upload support. Backup management UI in Settings page. ([PR #86](https://github.com/crshdn/mission-control/pull/86))
+
+### Fixed
+- **Build error from backup PR** — `@aws-sdk/client-s3` added as dependency and webpack external so dynamic imports resolve at build time.
+- **Research health query** — `MAX(id)` on UUID columns replaced with `MAX(started_at)` to correctly identify the latest research cycle per product.
+- **Repo hygiene** — Removed committed `.mc-workspace.json` and `db-backups/` binaries. Added `db-backups/`, `.tmp/`, `.mc-workspace.json` to `.gitignore`.
+- **Redundant DB writable check** — Removed separate `SELECT 1` test in health check; writable status derived from integrity check result.
+
+---
+
 ## [2.2.0] - 2026-03-21
 
 ### Added

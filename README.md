@@ -28,7 +28,7 @@ I highly recommend getting Hetzner VPS to run this. <a href="https://hetzner.clo
   <a href="https://missioncontrol.ghray.com"><strong>🎮 Live Demo</strong></a> •
   <a href="#-quick-start">Quick Start</a> •
   <a href="#-docker">Docker</a> •
-  <a href="#-whats-new-in-v220">What's New</a> •
+  <a href="#-whats-new-in-v221">What's New</a> •
   <a href="#-features">Features</a> •
   <a href="#-how-it-works">How It Works</a> •
   <a href="#-configuration">Configuration</a> •
@@ -41,16 +41,23 @@ I highly recommend getting Hetzner VPS to run this. <a href="https://hetzner.clo
 
 ---
 
-## 🚀 What's New in v2.2.0
+## 🚀 What's New in v2.2.1
 
-### Preference Learning (Karpathy AutoResearch Pattern)
-- **Your swipes train the system** — Every approve/reject/maybe builds a per-product preference model that steers future research and ideation. Categories you love get more ideas. Categories you reject get fewer. Complexity, impact scores, and tag patterns all factor in.
-- **Backfill from history** — Existing swipe data is retroactively analyzed to bootstrap preference models.
+### Health Check & Monitoring
+- **`/api/health`** — Unauthenticated summary or authenticated full-detail JSON. Checks DB, gateway, agents, queue, research, and cost caps.
+- **`/api/health/metrics`** — Prometheus scrape target for Grafana/monitoring dashboards.
 
-### Token Tracking Fix
-- **Token counts now recorded** — Research and ideation cycles pass usage data (prompt tokens, completion tokens, model) through to the activity log and cost tracker. Previously always showed 0.
+### Database Backup API
+- **On-demand backups** — Create, list, restore, and optionally upload to S3 via `/api/admin/backups`. Management UI in Settings.
 
 ### Previous Releases
+
+<details>
+<summary>v2.2.0 — Preference Learning & Token Tracking</summary>
+
+- **Your swipes train the system** — Every approve/reject/maybe builds a per-product preference model that steers future research and ideation.
+- **Token counts now recorded** — Research and ideation cycles pass usage data through to the activity log and cost tracker.
+</details>
 
 <details>
 <summary>v2.1.1 — Ideation Category Validation</summary>
